@@ -1,48 +1,27 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<math.h>
 
 int main () {
 	int n, i, j;
-	float X;
-	
-	printf("Nhap n : ");
-	scanf("%d", &n);
-	
+	float X, s=1, d=1;
+	printf("Nhap n moc va X : "); scanf("%d%f", &n, &X);
 	float x[n], y[n];
 	
-	printf("Nhap moc x : \n");
+	printf("Nhap bang ns : \n");
 	for(i=0;i<n;i++) {
-		printf("Nhap x[%d] : ", i);
-		scanf("%f", &x[i]);
-		printf("Nhap y[%d] : ", i);
-		scanf("%f", &y[i]);
+		scanf("%f%f", &x[i], &y[i]);
 	}
-	
-	printf("Nhap x* : ");
-	scanf("%f", &X);
-	
-	double h = x[1] - x[0];
-	float D[n];
-	
-	for(i=0;i<n;i++) {
-		D[i] = y[i];
-	}
-	
-	for(i=0;i<n-1;i++) {
-		D[i]=D[i+1]-D[i];
-	}
-	
-	float t0=(X-x[0])/h;
-	float t=t0;
-	float f=y[0]+t*D[0];
-	
-	for(j=2;j<n;j++) {
+	float h=x[1]-x[0];
+	float t=(X-x[0])/h;
+	float p=y[0];
+	for(j=1;j<n;j++) {
 		for(i=0;i<n-j;i++) {
-			D[i]=D[i+1]-D[i];
+			y[i]=y[i+1]-y[i];
 		}
-		t*=(t0-j+1)/j;
-		f+=t*D[0];
+		s*=(t-(j-1));
+		d*=j;
+		p+=(s/d)*y[0];
 	}
-	printf("Gia tri f(%f) : %.2f ", X, f);
-} 
+	printf("Gt can noi suy f(%f) : %f", X, p);
+	return 0;
+}
