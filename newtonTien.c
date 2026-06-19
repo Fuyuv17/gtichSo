@@ -1,38 +1,27 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<math.h>
-
-float f(float x) {
-	return pow(5, x)+cos(x);
-}
 
 int main () {
 	int n, i, j;
-	float x, a=2, b=5;
+	float X, s=1, d=1;
+	printf("Nhap n moc va X : "); scanf("%d%f", &n, &X);
+	float x[n], y[n];
 	
-	printf("Nhap so diem n va x* : "); 
-	scanf("%d%f", &n, &x);
-	
-	float h=(b-a)/(n-1);
-	float y[n];
-	
+	printf("Nhap bang ns : \n");
 	for(i=0;i<n;i++) {
-		y[i]=(f(a+i*h));
+		scanf("%f%f", &x[i], &y[i]);
 	}
-	
-	float D[n];
-	for(i=0;i<n-1;i++) {
-		D[i] = (y[i+1]-y[i]);
-	}
-	
-	float t=(x-a)/h;
-	float f=y[0]+t*D[0];
-	for(j=2;j<n;j++) {
-		for(i=0;i<n-j-1;i++) {
-			D[i]=(D[i+1]-D[i]);
+	float h=x[1]-x[0];
+	float t=(X-x[0])/h;
+	float p=y[0];
+	for(j=1;j<n;j++) {
+		for(i=0;i<n-j;i++) {
+			y[i]=y[i+1]-y[i];
 		}
-		t=t*(t-j+1)/j;
-		f=f+t*D[0];
+		s*=(t-(j-1));
+		d*=j;
+		p+=(s/d)*y[0];
 	}
-	printf("\nGia tri gan dung cua f(%.2f) la %f ", x, f);
+	printf("Gt can noi suy f(%f) : %f", X, p);
+	return 0;
 }
