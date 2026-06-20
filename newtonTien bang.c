@@ -3,7 +3,7 @@
 
 int main () {
 	int n, i, j;
-	float X, s=1, d=1;
+	float X, s=1;
 	printf("Nhap n moc va X : "); scanf("%d%f", &n, &X);
 	float x[n], y[n];
 	
@@ -18,9 +18,8 @@ int main () {
 		for(i=0;i<n-j;i++) {
 			y[i]=y[i+1]-y[i];
 		}
-		s*=(t-(j-1));
-		d*=j;
-		p+=(s/d)*y[0];
+		s*=(t-j+1)/j;
+		p+=s*y[0];
 	}
 	printf("Gt can noi suy f(%f) : %f", X, p);
 	return 0;
