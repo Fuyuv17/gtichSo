@@ -18,7 +18,7 @@ int main () {
 	do {
 		dem++;
 		x1 = x - f(x)/df(x);
-		err = fabs(x1-x);
+		err = fabs(x-x1);
 		printf("\n%5d | %12.6f | %12.6f", dem, x, x1);
 		x = x1;
 	}
